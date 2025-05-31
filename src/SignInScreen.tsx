@@ -245,7 +245,6 @@ const DotMatrix: React.FC<DotMatrixProps> = ({
 const ShaderMaterial = ({
   source,
   uniforms,
-  maxFps = 60,
 }: {
   source: string;
   hovered?: boolean;
@@ -254,13 +253,11 @@ const ShaderMaterial = ({
 }) => {
   const { size } = useThree();
   const ref = useRef<THREE.Mesh>(null);
-  let lastFrameTime = 0;
 
-  useFrame(({ clock }) => {
+useFrame(({ clock }: { clock: THREE.Clock }) => {
     if (!ref.current) return;
     const timestamp = clock.getElapsedTime();
 
-    lastFrameTime = timestamp;
 
     const material: any = ref.current.material;
     const timeLocation = material.uniforms.u_time;
@@ -497,7 +494,7 @@ export const SignInPage = ({ className }: SignInPageProps) => {
   const [step, setStep] = useState<"email" | "code" | "success">("email");
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const codeInputRefs = useRef<(HTMLInputElement | null)[]>([]);
-  const [showSuccessAnimation, setShowSuccessAnimation] = useState(false);
+  const [] = useState(false);
   const [initialCanvasVisible, setInitialCanvasVisible] = useState(true);
   const [reverseCanvasVisible, setReverseCanvasVisible] = useState(false);
 
