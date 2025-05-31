@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Dialog, DialogTitle, DialogContent, Avatar, Box, Typography, IconButton, Menu, MenuItem, TextField, InputAdornment, CircularProgress, Tabs, Tab } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, Avatar, Box, Typography, IconButton, Menu, MenuItem, TextField, CircularProgress, Tabs, Tab } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -68,7 +68,7 @@ const HomePage: React.FC<HomePageProps> = ({ session, handleLogout }) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (pos) => setLocation({ lat: pos.coords.latitude, lon: pos.coords.longitude }),
-        (err) => setSunMoonError('Location permission denied'),
+        () => setSunMoonError('Location permission denied'),
         { enableHighAccuracy: true }
       );
     } else {
@@ -119,7 +119,7 @@ const HomePage: React.FC<HomePageProps> = ({ session, handleLogout }) => {
     }
     if (tab === 0 && apodImages.length > 0) {
       timer = setInterval(() => {
-        setBgIndex(i => (apodImages.length > 1 ? (Math.floor(Math.random() * apodImages.length)) : 0));
+        setBgIndex(() => (apodImages.length > 1 ? (Math.floor(Math.random() * apodImages.length)) : 0));
       }, 5000);
     }
     return () => { if (timer) clearInterval(timer); };

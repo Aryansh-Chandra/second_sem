@@ -101,7 +101,7 @@ const LoginScreen: React.FC<{ onSwitch: () => void }> = ({ onSwitch }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) alert(error.message);
   };
 
@@ -337,7 +337,7 @@ const SignUpScreen: React.FC<{ onSwitch: () => void }> = ({ onSwitch }) => {
       return;
     }
 
-    const { data, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email,
       password,
       options: {

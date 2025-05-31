@@ -22,7 +22,7 @@ const AstronomyEventDialog: React.FC<AstronomyEventDialogProps> = ({ open, onClo
   const [chatLoading, setChatLoading] = useState(false);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const [apod, setApod] = useState<{ title: string; explanation: string; url: string } | null>(null);
-  const [apodError, setApodError] = useState<string | null>(null);
+  const [, setApodError] = useState<string | null>(null);
 
   useEffect(() => {
     if (open && date) {
